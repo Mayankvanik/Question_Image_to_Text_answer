@@ -1,0 +1,89 @@
+<!-- <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Image OCR</title>
+</head>
+<body>
+    <h1>Image OCR</h1>
+    <form action="/ocr" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">OK</button>
+    </form>
+    <hr>
+    <div id="result">
+        Display OCR result here -->
+    <!-- </div>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OCR Demo</title>
+</head>
+<body>
+    <h1>OCR Demo</h1>
+    <form action="/ocr" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Upload and OCR</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        // Handle form submission
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const response = await fetch('/ocr', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            displayResult(result.text);
+        });
+
+        // Display the OCR result
+        function displayResult(text) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = `OCR Result: ${text}`;
+        }
+    </script>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>OCR Demo</title>
+</head>
+<body>
+    <h1>OCR Demo</h1>
+    <form action="/ocr" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Upload and OCR</button>
+    </form>
+    <script>
+        // You can use JavaScript to handle the form submission and display the OCR result
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const response = await fetch('/ocr', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            console.log(result.text);
+            // You can display the OCR result here
+        });
+    </script>
+</body>
+</html> -->
