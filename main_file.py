@@ -18,6 +18,7 @@ os.makedirs(image_folder, exist_ok=True)
 
 def perform_ocr(img):
     text = pytesseract.image_to_string(img, config='--psm 6')
+    print(text)
     ans = llm(text)
     # Append the image and answer to the global list
     qa_list.append((img, ans))
